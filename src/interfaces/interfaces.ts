@@ -17,7 +17,7 @@ export interface ILocation {
   as: string;
   query: string;
 }
-export interface IWeather {
+export interface IWeathers {
   base: string;
   clouds: { all: number };
   cod: number;
@@ -42,76 +42,48 @@ export interface IWeather {
   wind: { speed: number; deg: number; gust: number };
 }
 
-//export interface ILocations {
-//  city: {
-//    id: number;
-//    lat: number;
-//    lon: number;
-//    name_de: string;
-//    name_en: string;
-//    name_es: string;
-//    name_fr: string;
-//    name_it: string;
-//    name_pt: string;
-//    name_ru: string;
-//    name_uk: string;
-//    okato: string;
-//    population: number;
-//    post: string;
-//    tel: string;
-//    vk: number;
-//  };
-//  country: {
-//    area: number;
-//    capital_en: string;
-//    capital_id: number;
-//    capital_ru: string;
-//    continent: string;
-//    cur_code: string;
-//    id: number;
-//    iso: string;
-//    lat: number;
-//    lon: number;
-//    name_de: string;
-//    name_en: string;
-//    name_es: string;
-//    name_fr: string;
-//    name_it: string;
-//    name_pt: string;
-//    name_ru: string;
-//    name_uk: string;
-//    neighbours: string;
-//    phone: string;
-//    population: number;
-//    timezone: string;
-//    utc: number;
-//    vk: number;
-//  };
-//  created: string;
-//  error: string;
-//  ip: string;
-//  region: {
-//    auto: string;
-//    id: number;
-//    iso: string;
-//    lat: number;
-//    lon: number;
-//    name_de: string;
-//    name_en: string;
-//    name_es: string;
-//    name_fr: string;
-//    name_it: string;
-//    name_pt: string;
-//    name_ru: string;
-//    name_uk: string;
-//    okato: string;
-//    timezone: string;
-//    utc: number;
-//    vk: number;
-//  };
-//  request: number;
-//  timestamp: number;
-//}
+export interface IWeather {
+  location: {
+    name: string;
+    region: string;
+    country: string;
+    lat: number;
+    lon: number;
+    tz_id: string;
+    localtime_epoch: number;
+    localtime: string;
+  };
+  current: {
+    last_updated_epoch: number;
+    last_updated: string;
+    temp_c: number;
+    temp_f: number;
+    is_day: number;
+    condition: {
+      text: string;
+      icon: string;
+      code: number;
+    };
+    wind_mph: number;
+    wind_kph: number;
+    wind_degree: number;
+    wind_dir: string;
+    pressure_mb: number;
+    pressure_in: number;
+    precip_mm: number;
+    precip_in: number;
+    humidity: number;
+    cloud: number;
+    feelslike_c: number;
+    feelslike_f: number;
+    vis_km: number;
+    vis_miles: number;
+    uv: number;
+    gust_mph: number;
+    gust_kph: number;
+  };
+}
+
 export interface ILocDefoultState {
   city: string | null;
 }
@@ -122,4 +94,13 @@ export interface ILocAction<T> {
 export interface IWeatherAction<T> {
   type: string;
   payload: T;
+}
+export interface IWeatherWindow {
+  weather: IWeather | null;
+  isLoaded: boolean;
+  setActivePage: (arg: boolean) => void;
+}
+export interface ILocationWindow {
+  getWeather: (arg: string) => void;
+  setActivePage: (arg: boolean) => void;
 }
