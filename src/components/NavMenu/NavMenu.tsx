@@ -12,7 +12,7 @@ function NavMenu() {
 
   const getWeather = (key: string) => {
     fetch(
-      `http://api.weatherapi.com/v1/current.json?key=c107b2ab099e4ef498b141134221005&q=${key}&aqi=no`
+      `https://api.weatherapi.com/v1/forecast.json?key=c107b2ab099e4ef498b141134221005&q=${key}&days=1&aqi=no&alerts=no`
     )
       .then((res) => res.json())
       .then(
